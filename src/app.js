@@ -33,3 +33,37 @@ const products = [
  * 5. pobranie danych i wyświetlenie pobranych danych
  * https://dummyjson.com/products
  */
+
+const Product = (product) => {
+  const productHtml = `
+  <div class="product-container">
+      <p>Name: <b>${product.title}</b></p>
+      <p>Price: <b>${product.price}</b></p>
+      <div class="thumbnail-container">
+        <img src="${product.thumbnail}" />
+      </div>
+      <button>Dodaj do koszyka</button>
+  </div>
+  `;
+
+  return productHtml;
+};
+
+const ProductList = (products) => {
+  const productListHtml = products.map((singleProduct) =>
+    Product(singleProduct)
+  );
+  return productListHtml.join("");
+};
+
+function render() {
+  const productsContainerRef = document.getElementById(
+    "products-list-container"
+  );
+
+  const html = ProductList(products);
+
+  productsContainerRef.innerHTML = html;
+}
+
+render();
